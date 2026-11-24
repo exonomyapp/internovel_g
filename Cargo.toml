@@ -1,0 +1,68 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/willow_gap_core",
+    "crates/internovel_auth",
+    "crates/internovel_ffi",
+    "crates/internovel_app",
+    "crates/internovel_server",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/exonomyapp/internovel_g"
+
+[workspace.dependencies]
+# Web UI & Server (Leptos + Axum)
+leptos = { version = "0.8.23" }
+leptos_axum = { version = "0.8.10" }
+leptos_router = { version = "0.8.17" }
+leptos_meta = { version = "0.8.7" }
+axum = { version = "0.8.9" }
+tokio = { version = "1.54.1", features = ["sync", "macros", "rt"] }
+tower = { version = "0.5.3" }
+tower-http = { version = "0.7.1", features = ["fs", "compression-gzip", "trace"] }
+
+# Willow + Iroh Transport & Confidentiality Stack
+willow25 = { version = "0.7.12-alpha.1", default-features = false }
+bab_rs = { version = "0.8.2", default-features = false }
+ufotofu = { version = "0.12.7" }
+iroh = { version = "1.5.0" }
+
+# Identity, Wallet Auth & Cryptography
+did-peer = { version = "0.7.5" }
+ed25519-dalek = { version = "2.1", features = ["rand_core", "zeroize"] }
+x25519-dalek = { version = "2.0", features = ["static_secrets", "zeroize"] }
+argon2 = { version = "0.5" }
+aes-gcm-siv = { version = "0.11" }
+chacha20poly1305 = { version = "0.10" }
+hkdf = { version = "0.12" }
+sha2 = { version = "0.10" }
+blake3 = { version = "1.8.7" }
+bip39 = { version = "2.1" }
+rand = { version = "0.8" }
+zeroize = { version = "1.8", features = ["derive"] }
+qrcode = { version = "0.14.1" }
+base64 = { version = "0.22" }
+bs58 = { version = "0.5" }
+pulldown-cmark = { version = "0.13.6", default-features = false, features = ["html"] }
+
+# Serialization, Errors, Telemetry & FFI
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.154" }
+serde_bytes = { version = "0.11.19" }
+thiserror = { version = "2.0.21" }
+tracing = { version = "0.1.44" }
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+uniffi = { version = "0.32.2" }
+wasm-bindgen = { version = "0.2.130" }
+console_error_panic_hook = { version = "0.1.7" }
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = 'z'
+lto = true
+codegen-units = 1
+panic = "abort"

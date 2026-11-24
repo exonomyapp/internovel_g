@@ -1,0 +1,31 @@
+[package]
+name = "willow_gap_core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Confidential Willow Transfer Protocol (WTP + PIO + specs/e2e) over Iroh 1.5 with Riot-inspired staged admission"
+
+[features]
+default = []
+# Gated so wasm32-unknown-unknown builds never pull fjall/lsm-tree/tokio-fs
+persistent-storage = ["willow25/persistent-storage", "bab_rs/storage-fs"]
+iroh-transport = ["dep:iroh", "tokio/io-util", "tokio/rt"]
+
+[dependencies]
+willow25 = { workspace = true }
+bab_rs = { workspace = true }
+ufotofu = { workspace = true }
+iroh = { workspace = true, optional = true }
+tokio = { workspace = true }
+
+blake3 = { workspace = true }
+chacha20poly1305 = { workspace = true }
+ed25519-dalek = { workspace = true }
+hkdf = { workspace = true }
+sha2 = { workspace = true }
+rand = { workspace = true }
+zeroize = { workspace = true }
+serde = { workspace = true }
+serde_bytes = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

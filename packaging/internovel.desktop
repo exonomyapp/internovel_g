@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=InterNovel
+Comment=Local-first collaborative novel writing on Willow & Iroh
+Exec=internovel_server
+Icon=internovel
+Terminal=false
+Type=Application
+Categories=Office;Publishing;TextEditor;
+MimeType=application/x-internovel-wallet;

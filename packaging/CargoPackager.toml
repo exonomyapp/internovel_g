@@ -1,0 +1,36 @@
+name = "internovel"
+product_name = "InterNovel"
+version = "0.1.0"
+identifier = "net.exosystems.internovel"
+authors = ["InterNovel Contributors"]
+publisher = "Exosystems"
+description = "Local-first collaborative novel writing studio on Confidential Willow over Iroh and did:peer:4"
+homepage = "https://internovel.exosystems.net"
+repository = "https://github.com/exonomyapp/internovel_g"
+license = "Apache-2.0 OR MIT"
+out_dir = "pkg/dist"
+formats = ["deb", "appimage", "dmg", "msi", "nsis", "archive"]
+resources = [
+  { src = "target/site", target = "site" },
+  { src = "docs", target = "docs" }
+]
+
+[[binaries]]
+path = "internovel_server"
+main = true
+
+[deb]
+depends = ["libssl3", "ca-certificates"]
+desktop_template = "packaging/internovel.desktop"
+section = "editors"
+
+[appimage]
+desktop_template = "packaging/internovel.desktop"
+
+[macos]
+frameworks = []
+minimum_system_version = "13.0"
+
+[windows]
+wix = { language = "en-US" }
+nsis = { install_mode = "currentUser" }

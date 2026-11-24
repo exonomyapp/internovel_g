@@ -1,0 +1,34 @@
+[package]
+name = "internovel_server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Axum 0.8 + Leptos 0.8 SSR server and standalone local desktop runner for InterNovel"
+
+[dependencies]
+internovel_app = { path = "../internovel_app", features = ["ssr"] }
+internovel_auth = { path = "../internovel_auth" }
+willow_gap_core = { path = "../willow_gap_core", features = ["persistent-storage", "iroh-transport"] }
+
+axum = { workspace = true }
+leptos = { workspace = true, features = ["ssr"] }
+leptos_axum = { workspace = true }
+tokio = { workspace = true, features = ["rt-multi-thread", "macros", "net"] }
+tower = { workspace = true }
+tower-http = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[package.metadata.leptos]
+output-name = "internovel_server"
+site-root = "target/site"
+site-pkg-dir = "pkg"
+tailwind-input-file = "../../style/input.css"
+assets-dir = "../../public"
+site-addr = "127.0.0.1:3000"
+reload-port = 3001
+bin-package = "internovel_server"
+lib-package = "internovel_app"
+lib-profile-release = "wasm-release"
+lib-default-features = false
+lib-features = ["hydrate"]

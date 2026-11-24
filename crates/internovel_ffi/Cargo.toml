@@ -1,0 +1,31 @@
+[package]
+name = "internovel_ffi"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Riot-inspired panic-catching handle arbiter (UniFFI/JNA) exposing InterNovel auth & Willow sync to iOS/Android/Desktop shells"
+
+[lib]
+crate-type = ["cdylib", "rlib", "staticlib"]
+
+[features]
+default = []
+bindgen-cli = ["uniffi/cli"]
+
+[[bin]]
+name = "uniffi-bindgen"
+path = "src/bin/uniffi_bindgen.rs"
+required-features = ["bindgen-cli"]
+
+[dependencies]
+internovel_auth = { path = "../internovel_auth" }
+willow_gap_core = { path = "../willow_gap_core" }
+uniffi = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[profile.dev]
+panic = "unwind"
+
+[profile.release]
+panic = "unwind"

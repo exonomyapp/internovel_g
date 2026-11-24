@@ -1,0 +1,36 @@
+[package]
+name = "internovel_app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Leptos 0.8.23 isomorphic UI for InterNovel (Studio, Novel Spine, Travel Trunks, Casting Studio, Novel Café, NextGraph/did:peer:4 Auth, and Dual Docs Menus)"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+hydrate = [
+    "leptos/hydrate",
+    "dep:wasm-bindgen",
+    "dep:console_error_panic_hook",
+]
+ssr = [
+    "leptos/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr",
+]
+
+[dependencies]
+internovel_auth = { path = "../internovel_auth" }
+willow_gap_core = { path = "../willow_gap_core" }
+
+leptos = { workspace = true }
+leptos_meta = { workspace = true }
+leptos_router = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+pulldown-cmark = { workspace = true }
+wasm-bindgen = { workspace = true, optional = true }
+console_error_panic_hook = { workspace = true, optional = true }
+web-sys = { version = "0.3", features = ["HtmlInputElement", "File", "FileList", "FileReader"] }
